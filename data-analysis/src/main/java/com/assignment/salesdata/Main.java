@@ -1,34 +1,43 @@
 package main.java.com.assignment.salesdata;
 
-import java.io.IOException;
+import java.nio.file.Path;
+import java.time.YearMonth;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Demonstrates the SalesDataAnalyzer usage and prints results.
+ * Simple console demo to run analyses and print results.
+ *
+ * Run this class after placing data/sales_data.csv in project root.
  */
 public class Main {
-    public static void main(String[] args) {
-        try {
-            SalesDataAnalyzer analyzer = new SalesDataAnalyzer("data/sales.csv");
+    public static void main(String[] args) throws Exception {
+        Path csvPath = Path.of("data", "sales_data.csv");
+        CsvReader reader = new CsvReader();
+        List<SalesRecord> records = reader.readSalesRecords(csvPath);
 
-            System.out.println("=== Total Sales by Product ===");
-            analyzer.totalSalesByProduct().forEach((product, total) ->
-                    System.out.println(product + ": " + total));
+        SalesDataAnalyzer analyzer = new SalesDataAnalyzer(records);
 
-            System.out.println("\n=== Total Quantity by Region ===");
-            analyzer.totalQuantityByRegion().forEach((region, qty) ->
-                    System.out.println(region + ": " + qty));
+        System.out.printf("Total Sales: $%.2f%n", analyzer.totalSales());
+        System.out.println("--- Sales by Product ---");
+        analyzer.totalSalesByProduct().forEach((p, v) -> System.out.printf("%s: $%.2f%n", p, v));
 
-            System.out.println("\n=== Average Sale per Product ===");
-            analyzer.averageSalePerProduct().forEach((product, avg) ->
-                    System.out.println(product + ": " + avg));
+        System.out.println("\n--- Sales by Region ---");
+        analyzer.totalSalesByRegion().forEach((r, v) -> System.out.printf("%s: $%.2f%n", r, v));
 
-            System.out.println("\n=== Top Product by Sales ===");
-            analyzer.topProductBySales().ifPresent(entry ->
-                    System.out.println(entry.getKey() + ": " + entry.getValue()));
-
-        } catch (IOException e) {
-            System.err.println("Error reading CSV file: " + e.getMessage());
+        System.out.println("\n--- Top 3 Products ---");
+        List<String> top3 = analyzer.topNProductsBySales(3);
+        for (int i = 0; i < top3.size(); i++) {
+            System.out.printf("%d. %s%n", i + 1, top3.get(i));
         }
+
+        System.out.println("\n--- Monthly Sales ---");
+        Map<YearMonth, Double> monthly = analyzer.monthlySales();
+        monthly.forEach((m, v) -> System.out.printf("%s: $%.2f%n", m, v));
+
+        System.out.printf("%nAverage Order Value: $%.2f%n", analyzer.averageOrderValue());
+
+        System.out.println("\n--- Sales by Salesperson ---");
+        analyzer.salesBySalesperson().forEach((s, v) -> System.out.printf("%s: $%.2f%n", s, v));
     }
 }
-
