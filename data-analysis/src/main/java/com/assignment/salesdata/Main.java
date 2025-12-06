@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        Path csvPath = Path.of("data", "sales_data.csv");
+        Path csvPath = Path.of("data", "sales.csv");
         CsvReader reader = new CsvReader();
         List<SalesRecord> records = reader.readSalesRecords(csvPath);
 
