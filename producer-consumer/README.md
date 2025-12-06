@@ -108,15 +108,15 @@ Clone the repository:
 
 ### Sample Output
 ```
-Consumed: 1
 Produced: 1
 Produced: 2
-Consumed: 2
 Produced: 3
-Consumed: 3
 Produced: 4
-Consumed: 4
+Consumed: 1
 Produced: 5
+Consumed: 2
+Consumed: 3
+Consumed: 4
 Consumed: 5
 Final destination: [1, 2, 3, 4, 5]
 ```
