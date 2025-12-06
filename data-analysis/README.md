@@ -29,6 +29,7 @@ SalesDataAnalysisProject/
 │  └─ Main.java
 │ 
 ├─ test/java/com/assignment/salesdata/
+│ └─ CsvReaderTest.java
 │ └─ SalesDataAnalyzerTest.java
 │
 ├─ data/
@@ -91,7 +92,7 @@ Console application demonstrating usage of `SalesDataAnalyzer`.
 
 ---
 
-### 5. `SalesDataAnalyzerTest.java`
+### 5. `SalesDataAnalyzerTest.java` and `CsvReaderTest.java`
 Unit tests using **JUnit 5** to validate functionality:
 
 **Tests include:**
@@ -103,7 +104,7 @@ Unit tests using **JUnit 5** to validate functionality:
 - `testSalesBySalespersonNonEmpty()` → Salesperson map is populated
 
 **Notes:**
-- CSV must be present at `data/sales_data.csv` relative to project root.
+- CSV must be present at `data/sales.csv` relative to project root.
 - Tests fail clearly if CSV is missing.
 
 ---
@@ -113,8 +114,8 @@ Unit tests using **JUnit 5** to validate functionality:
 1. **Clone repository:**
 
 ```
-git clone <your-repo-url>
-cd SalesDataAnalysisProject
+git clone https://github.com/ShreyAC962/BuildChallenge.git
+cd BuildChallenge/data-analysis
 ```
 2. Add CSV data
 - Place sales_data.csv inside data/ folder.
@@ -124,6 +125,7 @@ cd SalesDataAnalysisProject
 - Outputs analysis results to console.
 5. Run Unit Tests
 - SalesDataAnalyzerTest.java validates all analytical methods.
+- CsvReaderTest.java validate CSV reading and parsing.
 
 
 ## Sample CSV Format
