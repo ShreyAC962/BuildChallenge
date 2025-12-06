@@ -88,7 +88,9 @@ Tests Covered:
 ### Setup Instructions
 
 Clone the repository:
-```git clone <your-repo-url>```
+``` git clone https://github.com/ShreyAC962/BuildChallenge.git
+    cd BuildChallenge/producer-consumer
+```
 
 
 **Open in IntelliJ IDEA:**
